@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cricket ScoreBoard</title>
+
+    <style>
+        body {
+            background-image: url('https://t4.ftcdn.net/jpg/02/19/80/13/360_F_219801337_3kbasqLvgbUxAGVDH8QS35Sm4SEiPJFJ.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 70px;
+        }
+
+        .mainbox {
+            width: auto;
+            padding: 30px;
+        }
+
+        .Run {
+            padding: 4rem;
+            display: flex;
+            justify-content: center;
+            gap: 5rem;
+            align-items: center;
+            color: red;
+        }
+
+        .Wicket {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5rem;
+            color: red;
+        }
+
+        .Runsection {
+            display: flex;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 30px;
+        }
+
+        .display {
+            padding: 15px;
+            font-size: 50px;
+        }
+
+        h1 {
+            background: linear-gradient(to right, rgb(255, 6, 6), rgb(84, 22, 255),yellow);
+            -webkit-background-clip: text;
+            color: transparent;
+            background-clip: text;
+            border-bottom: 10px solid rgb(34, 18, 18);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+    <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function Cricket() {
+            const [initialRun, setRuns] = React.useState(0);
+            const [initialWicket, setWickets] = React.useState(0);
+
+            const increaseWickets = () => {
+                if (initialWicket < 10) {
+                    setWickets(initialWicket + 1);
+                }
+            };
+
+            return (
+                <>
+                    <h1>Cricket ScoreBoard</h1>
+
+                    <div className="mainbox">
+                        <div className="Run">
+
+                            <div className="display"><strong>Runs - {initialRun}</strong></div>
+
+                            {initialWicket < 10 && (
+                                <>
+                                    <div><button onClick={() => setRuns(initialRun + 4)}><strong>4</strong></button></div>
+                                    <div><button onClick={() => setRuns(initialRun + 6)}><strong>6</strong></button></div>
+                                </>
+                            )}
+
+                        </div>
+                        <div className="Wicket">
+                            <div className="display"><strong>Wickets - {initialWicket}</strong></div>
+                            <div><button onClick={increaseWickets}>OUT</button></div>
+                        </div>
+                    </div>
+                </>
+            );
+        }
+
+        ReactDOM.render(<Cricket />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>
